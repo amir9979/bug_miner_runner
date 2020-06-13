@@ -33,6 +33,9 @@ jobs:
         pip install termcolor 
         pip install openpyxl  
 
+    - name: GitHub Action for Maven
+      uses: LucaFeger/action-maven-cli@1.1.0
+
     
     - name: Checkout bugminer
       uses: actions/checkout@v2
