@@ -64,5 +64,30 @@ jobs:
     
     - name: execute miner
       run: python Main.py https://github.com/apache/tika http:\issues.apache.org\jira\projects\TIKA 65ae67eb163918d449242b47c2bfbb3cd99d7ecd
+    
+    - name: Upload a log
+      uses: actions/upload-artifact@v2
+      with:
+        # Artifact name
+        name: log.log
+        # A file, directory or wildcard pattern that describes what to upload
+        path: ./results/tika/log.log
+    
+    - name: Upload valid
+      uses: actions/upload-artifact@v2
+      with:
+        # Artifact name
+        name: valid_bugs.csv
+        # A file, directory or wildcard pattern that describes what to upload
+        path: ./results/tika/data/valid_bugs.csv
+    
+    - name: Upload invalid
+      uses: actions/upload-artifact@v2
+      with:
+        # Artifact name
+        name: invalid_bugs.csv
+        # A file, directory or wildcard pattern that describes what to upload
+        path: ./results/tika/data/invalid_bugs.csv
+
 
 
