@@ -47,6 +47,12 @@ jobs:
         path: .
         fetch-depth: 0
     
+    - name: mvnpy
+      run: |
+        git submodule init
+        git submodule update
+      working-directory: ./bugminer
+    
     - name: Checkout javadiff
       uses: actions/checkout@v2
       with:
