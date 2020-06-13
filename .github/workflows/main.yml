@@ -32,6 +32,7 @@ jobs:
         pip install jira
         pip install termcolor 
         pip install openpyxl  
+        pip install javalang
 
     - name: GitHub Action for Maven
       uses: LucaFeger/action-maven-cli@1.1.0
