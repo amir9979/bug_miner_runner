@@ -89,13 +89,5 @@ jobs:
         # A file, directory or wildcard pattern that describes what to upload
         path: ./results/tika/data/valid_bugs.csv
     
-    - name: Upload invalid
-      uses: actions/upload-artifact@v2 
-      with:
-        # Artifact name
-        name: ${{ matrix.commit }}_invalid_bugs.csv
-        # A file, directory or wildcard pattern that describes what to upload
-        path: ./results/tika/data/invalid_bugs.csv
-
 
 
