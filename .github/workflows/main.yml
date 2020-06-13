@@ -82,7 +82,7 @@ jobs:
         path: ./results/tika/data/valid_bugs.csv
     
     - name: Upload invalid
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v2 
       with:
         # Artifact name
         name: invalid_bugs.csv
