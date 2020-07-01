@@ -86,11 +86,13 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
+          var reader = new FileReader();
+          var text = reader.readAsText("./results/tika.csv");
           github.issues.createComment({
             issue_number: ${{github.event.issue.number}},
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: 'add comment'
+            body: text
             })
 
 
