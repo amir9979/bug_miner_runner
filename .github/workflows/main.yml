@@ -71,7 +71,7 @@ jobs:
         fetch-depth: 0
     
     - name: execute miner
-      run: python Main.py https://github.com/apache/tika http:\issues.apache.org\jira\projects\TIKA ${{ matrix.commit }}
+      run: python timeout.py 900 60 python Main.py https://github.com/apache/tika http:\issues.apache.org\jira\projects\TIKA ${{ matrix.commit }}
     
     - name: Upload a log
       uses: actions/upload-artifact@v2
