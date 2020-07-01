@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        commit: [ca6b5ca5614867a682b966fdfa35a6f7b48c1591, 4d89ea2c6349fe07b5dfc1134fa5cd4960a33710]
+        commit: [ca6b5ca5614867a682b966fdfa35a6f7b48c1591]
         # Set N number of parallel jobs you want to run tests on.
         # Use higher number if you have slow tests to split them on more parallel jobs.
         # Remember to update ci_node_index below to 0..N-1
@@ -71,23 +71,27 @@ jobs:
         fetch-depth: 0
     
     - name: execute miner
-      run: python timeout.py 900 60 python Main.py https://github.com/apache/tika http:\issues.apache.org\jira\projects\TIKA ${{ matrix.commit }}
+      run: python timeout.py 600 60 python Main.py https://github.com/apache/tika http:\issues.apache.org\jira\projects\TIKA ${{ matrix.commit }}
     
-    - name: Upload a log
+    - name: Upload valids
       uses: actions/upload-artifact@v2
       with:
         # Artifact name
         name: ${{ matrix.commit }}_log.log
         # A file, directory or wildcard pattern that describes what to upload
-        path: ./results/tika/log.log
+        path: ./results/tika.csv
     
-    - name: Upload valid
-      uses: actions/upload-artifact@v2
+    - name: Kommenterer med link til action
+      uses: actions/github-script@0.5.0
       with:
-        # Artifact name
-        name: ${{ matrix.commit }}_valid_bugs.csv
-        # A file, directory or wildcard pattern that describes what to upload
-        path: ./results/tika/data/valid_bugs.csv
-    
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          github.issues.createComment({
+            issue_number: ${{github.event.issue.number}},
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: 'add comment'
+            })
+
 
 
