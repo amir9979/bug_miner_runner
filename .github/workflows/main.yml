@@ -5,8 +5,8 @@ name: CI
 # Controls when the action will run. Triggers the workflow on push or pull request   
 # events but only for the master branch
 on:
-  push:
-    branches: [ master ]
+  issues:
+    types: [opened]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        commit: [ca6b5ca5614867a682b966fdfa35a6f7b48c1591, 4d89ea2c6349fe07b5dfc1134fa5cd4960a33710, 7bb35308304dcd0a1ae51f1fceab4ffa8a83c4bf, 8bd0ccb910e824ff64cf3d2f716ddea3c4295f24, 2354fe66ca0c7b6e16c8dc7b44bd73eaa975c057, 2f0fa3b65a48bc4042491324cc546f9c32536c20]
+        commit: [ca6b5ca5614867a682b966fdfa35a6f7b48c1591, 4d89ea2c6349fe07b5dfc1134fa5cd4960a33710]
         # Set N number of parallel jobs you want to run tests on.
         # Use higher number if you have slow tests to split them on more parallel jobs.
         # Remember to update ci_node_index below to 0..N-1
