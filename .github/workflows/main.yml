@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        commit: [ca6b5ca5614867a682b966fdfa35a6f7b48c1591, 4d89ea2c6349fe07b5dfc1134fa5cd4960a33710, 7bb35308304dcd0a1ae51f1fceab4ffa8a83c4bf, 8bd0ccb910e824ff64cf3d2f716ddea3c4295f24, 2354fe66ca0c7b6e16c8dc7b44bd73eaa975c057, 2f0fa3b65a48bc4042491324cc546f9c32536c20, 7ed838caf2579be3c2d450cad8b61a10cf36ef0e, 5df8f87c4c865942a0c0990bc2c00a6d2ad0320d, ebe7995a870c96ad5a7c9b05ed24bdb940bd166a, d569761e7a729085ea47db39f66ea7ce7bfc130f, cee95ede1a153f8ad70c37d8d4b37bfb3d4df37b, 3b33da246f59f0862dc725d42aeeae7ebeb20706, 246133a2d4ba6980217e04efabacef652a4a460c, 04cc72cd77c4f0d618f6dea7981779fae9807518, f5fa65fcc54f08e6ba57cb4b396753fbaa918c4a]
+        commit: [ca6b5ca5614867a682b966fdfa35a6f7b48c1591]
         # Set N number of parallel jobs you want to run tests on.
         # Use higher number if you have slow tests to split them on more parallel jobs.
         # Remember to update ci_node_index below to 0..N-1
