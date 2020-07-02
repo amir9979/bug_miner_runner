@@ -73,6 +73,10 @@ jobs:
     - name: execute miner
       run: python timeout.py 600 60 python Main.py https://github.com/apache/tika http:\issues.apache.org\jira\projects\TIKA ${{ matrix.commit }}
     
+        
+    - name: ls
+      run: ls -R
+      
     - name: Upload valids
       uses: actions/upload-artifact@v2
       with:
