@@ -77,30 +77,22 @@ jobs:
     - name: ls
       run: ls -R
 
-    - name: Upload a log
+    - name: Upload results dir
       uses: actions/upload-artifact@v2
       with:
         # Artifact name
-        name: ${{ matrix.commit }}_log.log
+        name: ${{ matrix.commit }}_results
         # A file, directory or wildcard pattern that describes what to upload
-        path: ./results/tika/log.log
-    
-    - name: Upload valid
+        path: ./results/tika
+
+    - name: Upload traces dir
       uses: actions/upload-artifact@v2
       with:
         # Artifact name
-        name: ${{ matrix.commit }}_valid_bugs.csv
+        name: ${{ matrix.commit }}_traces
         # A file, directory or wildcard pattern that describes what to upload
-        path: ./results/tika/valid_bugs.csv
-    
-    - name: Upload invalid
-      uses: actions/upload-artifact@v2 
-      with:
-        # Artifact name
-        name: ${{ matrix.commit }}_invalid_bugs.csv
-        # A file, directory or wildcard pattern that describes what to upload
-        path: ./results/tika/invalid_bugs.csv
-    
+        path: c:\users\runner~1\appdata\local\temp
+
     - name: add valids as a comment
       uses: actions/github-script@0.5.0
       with:
