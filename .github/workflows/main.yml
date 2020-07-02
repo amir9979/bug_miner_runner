@@ -86,8 +86,9 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          var reader = new FileReader();
-          var text = reader.readAsText("./results/tika.csv");
+          const fs = require("fs");
+          const path = "./results/tika.csv";
+          const text = fs.readFileSync(path).toString();
           github.issues.createComment({
             issue_number: ${{github.event.issue.number}},
             owner: context.repo.owner,
