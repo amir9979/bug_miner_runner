@@ -84,6 +84,14 @@ jobs:
         name: ${{ matrix.commit }}_results
         # A file, directory or wildcard pattern that describes what to upload
         path: ./results/tika
+    
+    - name: Upload traces dir	
+      uses: actions/upload-artifact@v2	
+      with:	
+        # Artifact name	
+        name: ${{ matrix.commit }}_traces	
+        # A file, directory or wildcard pattern that describes what to upload	
+        path: c:\users\runner~1\appdata\local\temp	
 
     - name: add valids as a comment
       uses: actions/github-script@0.5.0
