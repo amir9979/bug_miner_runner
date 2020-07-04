@@ -117,12 +117,12 @@ jobs:
               import json
               import os
               import csv
-              import http.client
+              import httplib
               from lxml import html
               with open(os.getenv('GITHUB_EVENT_PATH')) as json_file:
                             data = json.load(json_file)
                             issue_number = data['issue']['number']
-              conn = http.client.HTTPSConnection("api.github.com")
+              conn = httplib.client.HTTPSConnection("api.github.com")
               conn.request("GET","/repos/amir9979/bug_miner_runner/issues/{0}/comments".format(issue_number), "", {"User-Agent":"amir9979"})
               response = json.loads(conn.getresponse().read())
               bugs = list(map(lambda x: list(csv.reader(x['body'])), response))
