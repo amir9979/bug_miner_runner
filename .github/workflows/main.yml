@@ -124,7 +124,7 @@ jobs:
               conn = httplib.HTTPSConnection("api.github.com")
               conn.request("GET","/repos/amir9979/bug_miner_runner/issues/{0}/comments".format(issue_number), "", {"User-Agent":"amir9979"})
               response = json.loads(conn.getresponse().read())
-              print respones
+              print response
               bugs = list(map(lambda x: list(csv.reader(x['body'].split('\n'))), response))
               header = bugs[0][0]
               lines = [header] + reduce(list.__add__, map(lambda x: x[1:], bugs), [])
