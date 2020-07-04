@@ -73,16 +73,16 @@ jobs:
       run: python timeout.py 600 60 python Main.py ${{github.event.issue.title}} ${{ matrix.commit_ind }} ${{github.event.issue.body}}
     
         
-    - name: ls
-      run: ls -R
+#     - name: ls
+#       run: ls -R
 
-    - name: Upload results dir
-      uses: actions/upload-artifact@v2
-      with:
-        # Artifact name
-        name: ${{ matrix.commit_ind }}_results
-        # A file, directory or wildcard pattern that describes what to upload
-        path: ./results/${{github.event.issue.title}}
+#     - name: Upload results dir
+#       uses: actions/upload-artifact@v2
+#       with:
+#         # Artifact name
+#         name: ${{ matrix.commit_ind }}_results
+#         # A file, directory or wildcard pattern that describes what to upload
+#         path: ./results/${{github.event.issue.title}}
     
 
     - name: add valids as a comment
