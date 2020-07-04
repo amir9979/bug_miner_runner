@@ -103,6 +103,7 @@ jobs:
   aggregate:
       # The type of runner that the job will run on
       runs-on: windows-latest
+      needs: build
       
       steps:
         - name: Set up Python
