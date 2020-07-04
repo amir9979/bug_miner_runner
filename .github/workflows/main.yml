@@ -69,8 +69,8 @@ jobs:
         path: ./javadiff
         fetch-depth: 0
     
-#     - name: execute miner
-#       run: python timeout.py 600 60 python Main.py ${{github.event.issue.title}} ${{ matrix.commit_ind }} ${{github.event.issue.body}}
+    - name: execute miner
+      run: python timeout.py 600 60 python Main.py ${{github.event.issue.title}} ${{ matrix.commit_ind }} ${{github.event.issue.body}}
     
         
 #     - name: ls
@@ -121,7 +121,7 @@ jobs:
               with open(os.getenv('GITHUB_EVENT_PATH')) as json_file:
                             data = json.load(json_file)
                             issue_number = data['issue']['number']
-              conn = httplib.client.HTTPSConnection("api.github.com")
+              conn = httplib.HTTPSConnection("api.github.com")
               conn.request("GET","/repos/amir9979/bug_miner_runner/issues/{0}/comments".format(issue_number), "", {"User-Agent":"amir9979"})
               response = json.loads(conn.getresponse().read())
               bugs = list(map(lambda x: list(csv.reader(x['body'])), response))
