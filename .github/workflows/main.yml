@@ -90,7 +90,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const fs = require("fs");
-          const path = "./results/" + ${{github.event.issue.title}} + ".csv";
+          const path = "./results/" + "${{github.event.issue.title}}" + ".csv";
           const text = fs.readFileSync(path).toString();
           github.issues.createComment({
             issue_number: ${{github.event.issue.number}},
