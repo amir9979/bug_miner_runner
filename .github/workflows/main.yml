@@ -139,8 +139,7 @@ jobs:
             file: results.csv
             asset_name: ${{github.event.issue.title}}_${{github.event.issue.number}}.csv
             tag: ${{github.event.issue.title}}_${{github.event.issue.number}}
-			  
-				
+
         - name: Close Issue
           continue-on-error: true
           uses: peter-evans/close-issue@v1
@@ -148,11 +147,3 @@ jobs:
             comment: |
               The issue you have reported seems to be resolved now.
               The extracted data can be found at https://github.com/amir9979/jasome_runner/releases by number  ${{github.event.issue.number}}.
-
-				
-
-
-
-   
-
-
