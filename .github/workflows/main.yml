@@ -100,7 +100,56 @@ jobs:
             body: text
             })
   
-                
+  aggregate:
+      # The type of runner that the job will run on
+      runs-on: windows-latest
+      
+      steps:
+        - name: Set up Python
+          uses: actions/setup-python@v2
+          with:
+            python-version: 2.7
+
+        - name: add all valids to one file
+          shell: python
+          run: |
+              import json
+              import os
+              import csv
+              import http.client
+              from lxml import html
+              with open(os.getenv('GITHUB_EVENT_PATH')) as json_file:
+                            data = json.load(json_file)
+                            issue_number = data['issue']['number']
+              conn = http.client.HTTPSConnection("api.github.com")
+              conn.request("GET","/repos/amir9979/bug_miner_runner/issues/{0}/comments".format(issue_number), "", {"User-Agent":"amir9979"})
+              response = json.loads(conn.getresponse().read())
+              bugs = list(map(lambda x: list(csv.reader(x['body'])), response))
+              header = bugs[0][0]
+              lines = [header] + reduce(list.__add__, map(lambda x: x[1:], bugs), [])
+              with open("results.csv", "wb") as f:
+                            csv.writer(f).writerows(lines)
+        
+
+        - name: Upload results to release
+          uses: svenstaro/upload-release-action@v1-release
+          with:
+            repo_token: ${{ secrets.GITHUB_TOKEN }}
+            file: results.csv
+            asset_name: ${{github.event.issue.title}}_${{github.event.issue.number}}.csv
+            tag: ${{github.event.issue.title}}_${{github.event.issue.number}}
+			  
+				
+        - name: Close Issue
+          continue-on-error: true
+          uses: peter-evans/close-issue@v1
+          with:
+            comment: |
+              The issue you have reported seems to be resolved now.
+              The extracted data can be found at https://github.com/amir9979/jasome_runner/releases by number  ${{github.event.issue.number}}.
+
+				
+
 
 
    
