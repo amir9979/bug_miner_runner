@@ -112,6 +112,15 @@ jobs:
         path: ./tested_projects/${{github.event.issue.title}}/tmp_files/builds
     
 
+    - name: Upload all
+      uses: actions/upload-artifact@v2
+      with:
+        # Artifact name
+        name: ${{ matrix.commit_ind }}_all
+        # A file, directory or wildcard pattern that describes what to upload
+        path: ./tested_projects/${{github.event.issue.title}}
+    
+
     - name: add valids as a comment
       uses: actions/github-script@0.5.0
       with:
